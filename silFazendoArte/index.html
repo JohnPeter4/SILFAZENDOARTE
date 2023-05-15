@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>Sil Fazendo Arte</title>
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" type="text/css" href="css/estilos.css">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudFlare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	</head>
+	<body>
+
+		<header>
+			<div class="menu">
+				<div class="overlay" id="nav">
+					<a href="#" class="closeBtn" onclick="closeNav()">&times;</a>
+					<div class="overlay-content">
+					<a href="#"><i class="fa fa-home "></i> Home</a>
+					<a href="#"><i class="fa fa-heart "></i> Sobre</a>
+					<a href="#"><i class="fa fa-shopping-bag "></i> Encomendas</a>
+					<a href="#"><i class="fa fa-phone-square "></i> Contatos</a>
+					</div>
+				</div>		
+				<button class="nav-button" onClick="openNav()">
+					<i class="fa-solid fa-bars fa-2x"></i>
+				</button>			
+			</div>
+			<div class="container">
+				<img src="img/logo.png" class="logo">
+			</div>
+		</header>
+		<main>
+			<section class="container">
+				<h2 class="titulo">Encomendas</h2>
+				<label for="filtrar-tabela">Filtrar: </label>
+				<input type="text" name="filtro" id="filtrar-tabela" placeholder="Digite uma palavra">
+				<table>
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Produto</th>
+							<th>Quantidade</th>
+							<th>Valor Unitário</th>
+							<th>Total</th>
+						</tr>
+					</thead>
+					<tbody id="tabela-clientes">
+						<tr class="cliente" id="cliente1">
+							<td class="info-nome">Margarete</td>
+							<td class="info-produto">Jogo Americano (4 peças) - Rosa</td>
+							<td class="info-qtde">1</td>
+							<td class="info-valor">Trinta Reais</td>
+							<td class="info-total">0</td>
+						</tr>
+						<tr class="cliente" >
+							<td class="info-nome">Carolina</td>
+							<td class="info-produto">Tapetes Cozinha (3 peças) - Azul</td>
+							<td class="info-qtde">2</td>
+							<td class="info-valor">50</td>
+							<td class="info-total">0</td>
+						</tr>
+						<tr class="cliente" >
+							<td class="info-nome">Daniele</td>
+							<td class="info-produto">Pulseira Cristal Colorida</td>
+							<td class="info-qtde">ABC</td>
+							<td class="info-valor">25</td>
+							<td class="info-total">0</td>
+						</tr>
+						<tr class="cliente" >
+							<td class="info-nome">Daniel</td>
+							<td class="info-produto">Pulseira Cristal Vermelha</td>
+							<td class="info-qtde">1</td>
+							<td class="info-valor">25</td>
+							<td class="info-total">0</td>
+						</tr>
+					</tbody>
+				</table>
+				<span id="erro-ajax" class="invisivel">Erro ao buscar as encomendas</span>
+				<button id="buscar-encomendas" class="botao bto-principal">Buscar Encomendas</button>
+			</section>
+		</main>
+
+		<!--Formulário de inclusão de encomendas -->
+		<section class="container">
+			<h2 id="titulo-form">Adicionar nova encomenda</h2>
+			<!-- Exibe os erros de validação do formulario -->
+			<ul id="mensagens-erro" style="color: red;"></ul>
+			<form id="form-adiciona">
+				<div class="grupo">
+					<label for="nome">Nome:</label>
+					<input id="nome" name="nome" type="text" placeholder="Digite o nome do(a) cliente" class="campo">
+				</div>
+				<div class="grupo">
+					<label for="qtde">Qtde:</label>
+					<input type ="number" id="qtde" name="qtde" type="text" placeholder="Digite a quantidade encomendada" class="campo campo-medio">
+				</div>
+				<div class="grupo">
+					<label for="produto">Produto:</label>
+					<select id="produto" name="produto" class="campo campo-medio">
+						<option>Selecione</option>
+						<option>Jogo Americano (4 peças) - Rosa</option>
+						<option>Jogo Americano (4 peças) - Amarelo</option>
+						<option>Jogo Americano (4 peças) - Verde</option>
+						<option>Tapetes Cozinha (3 peças) - Azul</option>
+						<option>Tapetes Cozinha (3 peças) - Rosa</option>
+						<option>Tapetes Cozinha (3 peças) - Amarelo</option>
+						<option>Tapetes Cozinha (3 peças) - Vermelho</option>
+						<option>Pulseira Cristal - Colorida</option>
+						<option>Pulseira Cristal - Vermelha</option>
+						<option>Pulseira Cristal - Rosa</option>
+						<option>Pulseira Cristal - Lilás</option>
+						<option>Pulseira Cristal - Preta</option>
+					</select>
+				</div>
+				<div class="grupo">
+					<label for="unitario">R$ Unitário:</label>
+					<input id="unitario" type ="number" name="unitario" type="text" placeholder="Digite o valor unitário do produto" class="campo campo-medio">
+				</div>
+
+				<button id="adicionar-encomenda" class="botao bto-principal">Adicionar</button>
+			</form>
+		</section>
+		<div class="moeda">
+			<h2 id="Moeda-Atual">DOLAR</h2>
+			<a class="valor" id="Maior-Valor">14,22</a>
+			<a class="valor" id="Menor-Valor">12,22</a>
+			<a class="data" 	id="data-Valor">12/12/2002</a>
+			
+		</div>
+		<div class="animacao">
+			<a id ="titulo-grafico">aaa</a>
+			<img src="img/Grafico.jpg" onclick="Animacao()" class="grafico" id="graf">
+		</div>
+		
+
+		<script src="js/calcula-total.js"></script>
+		<script src="js/form.js"></script>
+		<script src="js/remover-encomenda.js"></script>
+		<script src="js/filtra.js"></script>
+		<script src="js/busca-encomenda.js"></script>
+		<script src="js/busca-Moedas.js"></script>
+		<script src="js/menu.js"></script>
+		<script src="js/Animation.js"></script>
+
+	</body>
+</html>
